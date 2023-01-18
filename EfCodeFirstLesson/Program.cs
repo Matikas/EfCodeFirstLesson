@@ -1,4 +1,5 @@
 ﻿using EfCodeFirstLesson;
+using Microsoft.EntityFrameworkCore;
 
 // INSERT:
 //using var dbContext = new BookContext();
@@ -24,7 +25,26 @@
 //dbContext.SaveChanges();
 
 // DELETE be selecto
+//using var dbContext = new BookContext();
+//var pageToDelete = new Page { Id = Guid.Parse("2F27824A-A22A-47B5-AB17-DC3C297B830D") };
+//dbContext.Pages.Remove(pageToDelete);
+//dbContext.SaveChanges();
+
+
+//using var dbContext = new BookContext();
+//var book = new Book("Harry Potter");
+//for(int i = 0; i < 565; i++)
+//{
+//    book.Pages.Add(new Page(i, $"content - {i}"));
+//}
+//dbContext.Books.Add(book);
+//dbContext.SaveChanges();
+
 using var dbContext = new BookContext();
-var pageToDelete = new Page { Id = Guid.Parse("2F27824A-A22A-47B5-AB17-DC3C297B830D") };
-dbContext.Pages.Remove(pageToDelete);
-dbContext.SaveChanges();
+var harryPotterBook = dbContext.Books.Include(b => b.Pages).FirstOrDefault(b => b.Name == "Harry Potter");
+Console.WriteLine($"Book Id: {harryPotterBook.Id}");
+Console.WriteLine("Book pages");
+foreach (var page in harryPotterBook.Pages)
+{
+    Console.WriteLine($"Page number: {page.Number}, content: {page.Content}");
+}

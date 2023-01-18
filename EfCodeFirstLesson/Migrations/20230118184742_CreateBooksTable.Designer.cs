@@ -4,6 +4,7 @@ using EfCodeFirstLesson;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCodeFirstLesson.Migrations
 {
     [DbContext(typeof(BookContext))]
-    partial class BookContextModelSnapshot : ModelSnapshot
+    [Migration("20230118184742_CreateBooksTable")]
+    partial class CreateBooksTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,11 +65,9 @@ namespace EfCodeFirstLesson.Migrations
 
             modelBuilder.Entity("EfCodeFirstLesson.Page", b =>
                 {
-                    b.HasOne("EfCodeFirstLesson.Book", "Book")
+                    b.HasOne("EfCodeFirstLesson.Book", null)
                         .WithMany("Pages")
                         .HasForeignKey("BookId");
-
-                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("EfCodeFirstLesson.Book", b =>

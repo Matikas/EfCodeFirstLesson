@@ -9,7 +9,9 @@ namespace EfCodeFirstLesson
 {
     public class BookContext : DbContext
     {
+        // Tai yra musu lenteles duomenu bazeje
         public DbSet<Page> Pages { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
