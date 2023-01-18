@@ -12,6 +12,11 @@ namespace EfCodeFirstLesson
         public int Number { get; set; }
         public string Content { get; set; }
 
+        public Page()
+        {
+
+        }
+
         public Page(int number, string content)
         {
             Id = Guid.NewGuid();
