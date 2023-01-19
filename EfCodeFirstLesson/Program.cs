@@ -33,18 +33,23 @@ using Microsoft.EntityFrameworkCore;
 
 //using var dbContext = new BookContext();
 //var book = new Book("Harry Potter");
-//for(int i = 0; i < 565; i++)
+//for (int i = 0; i < 565; i++)
 //{
 //    book.Pages.Add(new Page(i, $"content - {i}"));
 //}
 //dbContext.Books.Add(book);
 //dbContext.SaveChanges();
 
+//using var dbContext = new BookContext();
+//var harryPotterBook = dbContext.Books.Include(b => b.Pages).FirstOrDefault(b => b.Name == "Harry Potter");
+//Console.WriteLine($"Book Id: {harryPotterBook.Id}");
+//Console.WriteLine("Book pages");
+//foreach (var page in harryPotterBook.Pages)
+//{
+//    Console.WriteLine($"Page number: {page.Number}, content: {page.Content}");
+//}
+
 using var dbContext = new BookContext();
 var harryPotterBook = dbContext.Books.Include(b => b.Pages).FirstOrDefault(b => b.Name == "Harry Potter");
-Console.WriteLine($"Book Id: {harryPotterBook.Id}");
-Console.WriteLine("Book pages");
-foreach (var page in harryPotterBook.Pages)
-{
-    Console.WriteLine($"Page number: {page.Number}, content: {page.Content}");
-}
+dbContext.Books.Remove(harryPotterBook);
+dbContext.SaveChanges();

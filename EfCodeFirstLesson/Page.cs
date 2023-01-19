@@ -14,8 +14,8 @@ namespace EfCodeFirstLesson
         public string Content { get; set; }
 
         [ForeignKey("Book")]
-        public Guid? BookId { get; set; }
-        public Book? Book { get; set; }
+        public Guid BookId { get; set; }
+        public Book Book { get; set; }
 
         public Page()
         {
